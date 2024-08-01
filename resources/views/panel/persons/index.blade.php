@@ -1,6 +1,6 @@
 @extends('panel.layouts.app')
-@section('title', 'Metropolitian Dashboard')
-@section('subtitle', 'Sadananda VDC tax toll.')
+@section('title', 'Person List')
+@section('subtitle', 'List of Persons')
 @section('content')
 
     <!-- Main page content-->
@@ -77,17 +77,5 @@
             reader.readAsDataURL(e.target.files[0]);
         });
     </script>
-    <script>
-        @if (session('success'))
-            <div class = "alert alert-success" >
-            {{ session('success') }}
-                </div>
-        @endif
 
-        @if (session('error'))
-            <div class = "alert alert-danger" >
-            {{ session('error') }}
-                </div>
-        @endif
-    </script>
 @endsection
