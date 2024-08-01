@@ -8,7 +8,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
        @include('layouts.styles')
-       <title>Dashboard - SB Admin Pro</title>
+       <title>Sadananda Nagarpalika</title>
 
        <script data-search-pseudo-elements="" defer="" src="../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
         <script src="../cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
