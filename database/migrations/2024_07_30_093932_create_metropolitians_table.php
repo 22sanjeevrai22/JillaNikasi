@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('province');
             $table->string('zip');
             $table->string('email')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

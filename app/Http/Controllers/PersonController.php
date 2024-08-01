@@ -13,7 +13,8 @@ class PersonController extends Controller
      */
     public function index()
     {
-        //
+        $persons = Person::all();
+        return view('panel.persons.index', compact('persons'));
     }
 
     /**
@@ -21,7 +22,7 @@ class PersonController extends Controller
      */
     public function create()
     {
-        //
+        return view('panel.persons.create');
     }
 
     /**
@@ -29,7 +30,17 @@ class PersonController extends Controller
      */
     public function store(StorePersonRequest $request)
     {
-        //
+        $data = [
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+            'address' => $request->address,
+            'contact_number' => $request->contact_number,
+            'email' => $request->email,
+        ];
+
+        Person::create($data);
+        return redirect()->back()->with('success', 'Person Created Successfully');
     }
 
     /**
@@ -61,6 +72,13 @@ class PersonController extends Controller
      */
     public function destroy(Person $person)
     {
-        //
+        $person = Person::find($person->id);
+        if($person){
+            $person->delete();
+            return redirect()->back()->with('success', 'Person Deleted Successfully');
+        }else{
+            return redirect()->back()->with('error', 'Person Not Found');
+
+        }
     }
 }

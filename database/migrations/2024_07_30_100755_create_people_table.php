@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('people', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
-            $table->string('email')->unique();
+            $table->string('email')->nullable()->unique();
             $table->string('address');
             $table->string('contact_number');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -27,6 +29,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('people');
+        Schema::table('people', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('quantity');
             $table->decimal('price_per_unit', 8 , 2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

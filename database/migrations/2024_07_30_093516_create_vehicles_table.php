@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('vehicle_type_id');
             $table->string('vehicle_no');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

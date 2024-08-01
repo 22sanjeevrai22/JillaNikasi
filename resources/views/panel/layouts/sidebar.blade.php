@@ -4,7 +4,7 @@
             <!-- Sidenav Menu Heading (Core)-->
             <div class="sidenav-menu-heading">Core</div>
             <!-- Sidenav Accordion (Dashboard)-->
-            <a class="nav-link collapsed" href="{{ route('dashboard') }}" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
+            <a class="nav-link collapsed" href="{{ route('admin.dashboard') }}" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
                 <div class="nav-link-icon"><i data-feather="activity"></i></div>
                 Dashboard
                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>

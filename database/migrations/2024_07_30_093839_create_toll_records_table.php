@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('good_id');
             $table->enum('direction', ['incoming', 'outgoing']);
             $table->decimal('total_tax_revenue', 12, 2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

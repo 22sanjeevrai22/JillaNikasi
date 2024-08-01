@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('vehicle_code');
             $table->string('name');
             $table->decimal('price_per_vehicle', 8, 2 );
+            $table->softDeletes();
             $table->timestamps();
         });
     }
