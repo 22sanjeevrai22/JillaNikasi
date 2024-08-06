@@ -31,7 +31,15 @@
                             @foreach ($persons as $person)
                                 <tr>
                                     <th scope="row">{{ $person->id }}</th>
-                                    <td>Image</td>
+                                    <td>
+
+                                        @if($person->getFirstMedia('cover'))
+                                            <img src="{{ $person->getFirstMedia('cover')->getUrl('preview') }}" alt="">
+                                        @else
+                                        No Image
+                                        @endif
+
+                                    </td>
                                     <td>{{ $person->first_name }}
                                         @if ($person->middle_name)
                                             {{ $person->middle_name }}

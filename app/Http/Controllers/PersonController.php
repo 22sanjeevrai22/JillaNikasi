@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Person;
 use App\Http\Requests\StorePersonRequest;
 use App\Http\Requests\UpdatePersonRequest;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
 class PersonController extends Controller
 {
@@ -39,7 +41,26 @@ class PersonController extends Controller
             'email' => $request->email,
         ];
 
-        Person::create($data);
+        $person = Person::create($data);
+        if ($request->hasFile('person_image')) {
+            try {
+                // $image = $request->file('person_image');
+                // $imagePath = $image->store('temp', 'public');
+                // $request->session()->put('temp_person_image', $imagePath);
+
+                $person
+                    ->addMediaFromRequest('person_image')
+                    ->usingName($request->first_name)
+                    ->toMediaCollection('cover');
+
+                // $request->session()->forget('temp_person_image');
+            } catch (FileDoesNotExist $e) {
+                return redirect()->back()->with('error', 'File does not exist.');
+            } catch (FileIsTooBig $e) {
+                return redirect()->back()->with('error', 'File is too big.');
+            }
+            return redirect()->back()->with('success', 'Person Created Successfully');
+        }
         return redirect()->back()->with('success', 'Person Created Successfully');
     }
 
@@ -56,7 +77,7 @@ class PersonController extends Controller
      */
     public function edit(Person $person)
     {
-        //
+        return view('panel.persons.edit', compact('person'));
     }
 
     /**
@@ -64,7 +85,39 @@ class PersonController extends Controller
      */
     public function update(UpdatePersonRequest $request, Person $person)
     {
-        //
+        // dd($request);
+        $data = [
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+            'address' => $request->address,
+            'contact_number' => $request->contact_number,
+            'email' => $request->email,
+        ];
+
+        $person->update($data);
+        if ($request->hasFile('person_image')) {
+            try {
+                // $image = $request->file('person_image');
+                // $imagePath = $image->store('temp', 'public');
+                // $request->session()->put('temp_person_image', $imagePath);
+
+                $person
+                    ->addMediaFromRequest('person_image')
+                    ->usingName($request->first_name)
+                    ->toMediaCollection('cover');
+
+                // $request->session()->forget('temp_person_image');
+            } catch (FileDoesNotExist $e) {
+                return redirect()->back()->with('error', 'File does not exist.');
+            } catch (FileIsTooBig $e) {
+                return redirect()->back()->with('error', 'File is too big.');
+            }
+
+            return redirect()->back()->with('success', 'Person Edited Successfully');
+        }
+        return redirect()->back()->with('success', 'Person Edited Successfully');
+
     }
 
     /**
@@ -73,12 +126,11 @@ class PersonController extends Controller
     public function destroy(Person $person)
     {
         $person = Person::find($person->id);
-        if($person){
+        if ($person) {
             $person->delete();
             return redirect()->back()->with('success', 'Person Deleted Successfully');
-        }else{
+        } else {
             return redirect()->back()->with('error', 'Person Not Found');
-
         }
     }
 }

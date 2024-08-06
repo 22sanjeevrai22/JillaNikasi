@@ -4,6 +4,11 @@
 @section('content')
 
     <!-- Main page content-->
+    <style>
+        .hide-toast {
+            display: block !important;
+        }
+    </style>
 
     <form action="{{ route('persons.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -11,7 +16,7 @@
             <div class="col-xl-8">
                 <!-- Account details card-->
                 <div class="card mb-4">
-                    <div class="card-header">Person Details</div>
+                    <div class="card-header">Create Person</div>
                     <div class="card-body">
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
@@ -19,8 +24,8 @@
                                 <label class="small mb-1" for="inputFirstName">First Name<span
                                         class="text-danger">*</span></label>
                                 <input class="form-control @error('first_name') is-invalid @enderror" id="inputFirstName"
-                                    name="first_name" type="text"
-                                    placeholder="Enter your first name" value="{{ old('first_name') }}" required />
+                                    name="first_name" type="text" placeholder="Enter your first name"
+                                    value="{{ old('first_name') }}" required />
                                 @error('first_name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -32,7 +37,7 @@
                                     class="form-control @error('middle_name') is-invalid
                                 @enderror"
                                     name="middle_name" id="inputMiddleName" type="text"
-                                    placeholder="Enter your middle name"  value="{{ old('middle_name') }}" />
+                                    placeholder="Enter your middle name" value="{{ old('middle_name') }}" />
                                 @error('middle_name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -100,11 +105,16 @@
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
                     <img class="img-account-profile rounded-circle mb-2"
-                        src="{{ asset('assets/img/demo/user-placeholder.svg') }}" id="preview_image" alt="" />
+                        src="{{ asset('assets/img/demo/user-placeholder.svg') }}" id="preview_image"
+                        alt="Profile Picture" />
                     <!-- Profile picture help block-->
                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
 
-                    <input type="file" name="person_image" id="person_image" accept=".jpg, .jpeg, .png" class="d-none">
+                    <input type="file" name="person_image" id="person_image" accept=".jpg, .jpeg, .png"
+                        class="d-none @error('person_image') is-invalid @enderror">
+                    @error('person_image')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     <button class="btn btn-primary" type="button"
                         onclick="document.getElementById('person_image').click();">Upload Image</button>
                 </div>
@@ -113,42 +123,54 @@
     </form>
 
 
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast-container hide-toast position-fixed top-0 start-50 translate-middle-x p-3">
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="..." class="rounded me-2" alt="...">
+            <div class="toast-header text-bg-success">
                 <strong class="me-auto">Bootstrap</strong>
-                <small>11 mins ago</small>
+                <small>Just Now</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            <div class="toast-body">
+            <div class="toast-body text-primary">
                 Hello, world! This is a toast message.
             </div>
         </div>
     </div>
 
 
+
+
+
 @endsection
 @section('page-scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var person_image = document.getElementById('person_image');
-        person_image.addEventListener('change', function(e) {
-            var reader = new FileReader();
-            reader.onload = function(event) {
-                document.getElementById('preview_image').src = event.target.result;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var person_image = document.getElementById('person_image');
+            person_image.addEventListener('change', function(e) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('preview_image').src = event.target.result;
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            });
+
+            function showToast(title, message) {
+                var toast = document.getElementById('liveToast');
+                var toastBody = toast.querySelector('.toast-body');
+                var toastHeader = toast.querySelector('.toast-header strong');
+
+                toastBody.textContent = message;
+                toastHeader.textContent = title;
+
+                var toastElement = new bootstrap.Toast(toast);
+                toastElement.show();
             }
-            reader.readAsDataURL(e.target.files[0]);
+
+            @if (session('success'))
+                showToast('Success', '{{ session('success') }}');
+            @endif
+            @if (session('error'))
+                showToast('Error', '{{ session('error') }}');
+            @endif
         });
-
-        @if (session('success'))
-            showToast('Success', '{{ session('success') }}');
-        @endif
-        @if (session('error'))
-            showToast('Error', '{{ session('error') }}');
-        @endif
-    });
-
-    
-</script>
+    </script>
 @endsection

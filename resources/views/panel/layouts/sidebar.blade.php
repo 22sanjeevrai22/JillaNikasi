@@ -4,29 +4,29 @@
             <!-- Sidenav Menu Heading (Core)-->
             <div class="sidenav-menu-heading">Core</div>
             <!-- Sidenav Accordion (Dashboard)-->
-            <a class="nav-link collapsed" href="{{ route('admin.dashboard') }}" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
+            <a class="nav-link collapsed" href="{{ route('admin.dashboard') }}" aria-expanded="false" aria-controls="collapseDashboards">
                 <div class="nav-link-icon"><i data-feather="activity"></i></div>
                 Dashboard
                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
 
             <div class="sidenav-menu-heading">Custom</div>
-            <a class="nav-link collapsed" href="{{ route('persons.index') }}" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+            <a class="nav-link collapsed" href="{{ route('persons.index') }}"  aria-expanded="false" aria-controls="collapsePages">
                 <div class="nav-link-icon"><i data-feather="grid"></i></div>
                 Persons
                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
-            <a class="nav-link collapsed" href="{{ route('vehicles.index') }}" data-bs-toggle="collapse" data-bs-target="#collapseApps" aria-expanded="false" aria-controls="collapseApps">
+            <a class="nav-link collapsed" href="{{ route('vehicles.index') }}" aria-expanded="false" aria-controls="collapseApps">
                 <div class="nav-link-icon"><i data-feather="globe"></i></div>
                 Vehicles
                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
-            <a class="nav-link collapsed" href="{{ route('vehicle-types.index') }}" data-bs-toggle="collapse" data-bs-target="#collapseApps" aria-expanded="false" aria-controls="collapseApps">
+            <a class="nav-link collapsed" href="{{ route('vehicle-types.index') }}" aria-expanded="false" aria-controls="collapseApps">
                 <div class="nav-link-icon"><i data-feather="globe"></i></div>
                 Vehicle Types
                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
-            <a class="nav-link collapsed" href="{{ route('goods.index') }}" data-bs-toggle="collapse" data-bs-target="#collapseFlows" aria-expanded="false" aria-controls="collapseFlows">
+            <a class="nav-link collapsed" href="{{ route('goods.index') }}" aria-expanded="false" aria-controls="collapseFlows">
                 <div class="nav-link-icon"><i data-feather="repeat"></i></div>
                 Goods
                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -34,19 +34,19 @@
             <!-- Sidenav Heading (UI Toolkit)-->
             <div class="sidenav-menu-heading">UI Toolkit</div>
             <!-- Sidenav Accordion (Layout)-->
-            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+            <a class="nav-link collapsed" href="javascript:void(0);" aria-expanded="false" aria-controls="collapseLayouts">
                 <div class="nav-link-icon"><i data-feather="layout"></i></div>
                 Layout
                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
             <!-- Sidenav Accordion (Components)-->
-            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
+            <a class="nav-link collapsed" href="javascript:void(0);" aria-expanded="false" aria-controls="collapseComponents">
                 <div class="nav-link-icon"><i data-feather="package"></i></div>
                 Components
                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
             <!-- Sidenav Accordion (Utilities)-->
-            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
+            <a class="nav-link collapsed" href="javascript:void(0);" aria-expanded="false" aria-controls="collapseUtilities">
                 <div class="nav-link-icon"><i data-feather="tool"></i></div>
                 Utilities
                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>

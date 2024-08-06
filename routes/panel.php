@@ -12,13 +12,14 @@ Route::get('dashboard', function () {
 Route::prefix('admin')->group(function () {
 
     Route::get('/', function(){
-        return view('admin.dashboard');
+        return redirect()->route('admin.dashboard');
     });
     Route::get('dashboard', [DashboardController::class, 'index'] )->name('admin.dashboard');
     Route::get('persons', [PersonController::class, 'index'])->name('persons.index');
     Route::get('persons/create', [PersonController::class, 'create'])->name('persons.create');
     Route::post('persons/store', [PersonController::class, 'store'])->name('persons.store');
     Route::get('persons/{person}/edit', [PersonController::class, 'edit'])->name('persons.edit');
+    Route::put('persons/{person}/update', [PersonController::class, 'update'])->name('persons.update');
     Route::delete('persons/{person}', [PersonController::class, 'destroy'])->name('persons.destroy');
 
     Route::get('vehicle-types', function () {
