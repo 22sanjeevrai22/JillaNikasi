@@ -27,7 +27,7 @@ class UpdatePersonRequest extends FormRequest
             'last_name' => 'required|min:2|max:30|alpha',
             'address' => 'required|min:2|max:50',
             'contact_number' => 'required|string|regex:/^\d{10}$/',
-            'email' => 'nullable|email|max:30',
+            'email' => 'nullable|email|unique:people',
             'person_image' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
         ];
     }

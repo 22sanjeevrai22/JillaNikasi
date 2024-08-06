@@ -13,7 +13,8 @@ class VehicleTypeController extends Controller
      */
     public function index()
     {
-        //
+        $vehicleTypes = VehicleType::all();
+        return view('panel.vehicleTypes.index', compact('vehicleTypes'));
     }
 
     /**
@@ -61,6 +62,12 @@ class VehicleTypeController extends Controller
      */
     public function destroy(VehicleType $vehicleType)
     {
-        //
+        $vehicleType = VehicleType::find($vehicleType->id);
+        if ($vehicleType) {
+            $vehicleType->delete();
+            return redirect()->back()->with('success', 'Vehicle-Type Deleted Successfully');
+        } else {
+            return redirect()->back()->with('error', 'Vehicle-Type Not Found');
+        }
     }
 }

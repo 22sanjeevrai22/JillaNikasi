@@ -4,11 +4,6 @@
 @section('content')
 
     <!-- Main page content-->
-    <style>
-        .hide-toast {
-            display: block !important;
-        }
-    </style>
 
     <form action="{{ route('persons.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -94,13 +89,11 @@
                             @enderror
                         </div>
 
-                        <button class="btn btn-primary" type="submit">Add Person</button>
-
                     </div>
                 </div>
                 <!-- Profile picture card-->
             </div>
-            <div class="card col-xl-4">
+            <div class="card col-xl-4 mb-3">
                 <div class="card-header">Profile Picture</div>
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
@@ -115,28 +108,16 @@
                     @error('person_image')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-                    <button class="btn btn-primary" type="button"
+                    <button class="btn btn-info" type="button"
                         onclick="document.getElementById('person_image').click();">Upload Image</button>
                 </div>
             </div>
         </div>
+        <button class="btn btn-primary" type="submit">Add Person</button>
+
     </form>
 
-
-    <div class="toast-container hide-toast position-fixed top-0 start-50 translate-middle-x p-3">
-        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header text-bg-success">
-                <strong class="me-auto">Bootstrap</strong>
-                <small>Just Now</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body text-primary">
-                Hello, world! This is a toast message.
-            </div>
-        </div>
-    </div>
-
-
+ @include('panel.layouts.toast')
 
 
 
@@ -153,23 +134,33 @@
                 reader.readAsDataURL(e.target.files[0]);
             });
 
-            function showToast(title, message) {
+            function showToast(title, message, type) {
                 var toast = document.getElementById('liveToast');
                 var toastBody = toast.querySelector('.toast-body');
-                var toastHeader = toast.querySelector('.toast-header strong');
+                var toastHeader = toast.querySelector('.toast-header');
+                var toastHeaderStrong = toastHeader.querySelector('strong');
 
                 toastBody.textContent = message;
-                toastHeader.textContent = title;
+                toastHeaderStrong.textContent = title;
+
+                // Reset the toast header class
+                toastHeader.className = 'toast-header';
+
+                if (type === 'success') {
+                    toastHeader.classList.add('text-bg-success');
+                } else if (type === 'error') {
+                    toastHeader.classList.add('text-bg-warning');
+                }
 
                 var toastElement = new bootstrap.Toast(toast);
                 toastElement.show();
             }
 
             @if (session('success'))
-                showToast('Success', '{{ session('success') }}');
+                showToast('Success', '{{ session('success') }}', 'success');
             @endif
             @if (session('error'))
-                showToast('Error', '{{ session('error') }}');
+                showToast('Error', '{{ session('error') }}', 'error');
             @endif
         });
     </script>

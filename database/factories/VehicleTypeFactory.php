@@ -16,8 +16,12 @@ class VehicleTypeFactory extends Factory
      */
     public function definition(): array
     {
+        $basePrice = $this->faker->numberBetween(100, 500);
+
         return [
-            //
+            'vehicle_code' => $this->faker->postcode,
+            'name' => '',
+            'price_per_vehicle' => $basePrice,
         ];
     }
 }

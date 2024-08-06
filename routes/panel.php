@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\VehicleTypeController;
+use App\Http\Controllers\VehicleController;
 
 Route::get('dashboard', function () {
     return redirect()->route('admin.dashboard');
@@ -22,25 +24,14 @@ Route::prefix('admin')->group(function () {
     Route::put('persons/{person}/update', [PersonController::class, 'update'])->name('persons.update');
     Route::delete('persons/{person}', [PersonController::class, 'destroy'])->name('persons.destroy');
 
-    Route::get('vehicle-types', function () {
-        return view('vehicleType.index');
-    })->name('vehicle-types.index');
-    Route::get('vehicle-types/create', function () {
-        return view('vehicleTypes.create');
-    })->name('vehicle-types.create');
-    Route::get('vehicle-types/{vehicle-type}/edit', function () {
-        return view('vehicleTypes.edit');
-    })->name('vehicle-types.edit');
+    Route::get('vehicle-types', [VehicleTypeController::class, 'index'])->name('vehicle-types.index');
+    Route::get('vehicle-types/create', [VehicleTypeController::class, 'create'])->name('vehicle-types.create');
+    Route::get('vehicle-types/{vehicle-type}/edit', [VehicleTypeController::class, 'edit'])->name('vehicle-types.edit');
+    Route::delete('vehicle-types/{vehicle-type}', [VehicletypeController::class, 'destroy'])->name('vehicle-types.destroy');
 
-    Route::get('vehicles', function () {
-        return view('vehicles.index');
-    })->name('vehicles.index');
-    Route::get('vehicles/create', function () {
-        return view('vehicles.create');
-    })->name('vehicles.create');
-    Route::get('vehicles/{vehicle}/edit', function () {
-        return view('vehicles.edit');
-    })->name('vehicles.edit');
+    Route::get('vehicles', [VehicleController::class, 'index'])->name('vehicles.index');
+    Route::get('vehicles/create', [VehicleController::class, 'create'])->name('vehicles.create');
+    Route::get('vehicles/{vehicle}/edit', [VehicleController::class, 'edit'])->name('vehicles.edit');
 
     Route::get('goods', function () {
         return view('goods.index');

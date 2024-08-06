@@ -13,7 +13,8 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        //
+        $vehicles = Vehicle::all();
+        return view('panel.vehicles.index', compact('vehicles'));
     }
 
     /**
@@ -21,7 +22,7 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        //
+        return view('panel.vehicles.create');
     }
 
     /**
@@ -45,7 +46,7 @@ class VehicleController extends Controller
      */
     public function edit(Vehicle $vehicle)
     {
-        //
+        return view('panel.vehicles.edit', compact('vehicle'));
     }
 
     /**
@@ -61,6 +62,12 @@ class VehicleController extends Controller
      */
     public function destroy(Vehicle $vehicle)
     {
-        //
+        $vehicle = Vehicle::find($vehicle->id);
+        if ($vehicle) {
+            $vehicle->delete();
+            return redirect()->back()->with('success', 'Vehicle Deleted Successfully');
+        } else {
+            return redirect()->back()->with('error', 'Vehicle Not Found');
+        }
     }
 }

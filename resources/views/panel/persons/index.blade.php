@@ -33,10 +33,11 @@
                                     <th scope="row">{{ $person->id }}</th>
                                     <td>
 
-                                        @if($person->getFirstMedia('cover'))
-                                            <img src="{{ $person->getFirstMedia('cover')->getUrl('preview') }}" alt="">
+                                        @if ($person->getFirstMedia('cover'))
+                                            <img src="{{ $person->getFirstMedia('cover')->getUrl('preview') }}"
+                                                alt="">
                                         @else
-                                        No Image
+                                            No Image
                                         @endif
 
                                     </td>
@@ -70,19 +71,40 @@
         </div>
     </div>
 
-
-
+    @include('panel.layouts.toast')
 
 @endsection
 @section('page-scripts')
     <script>
-        var person_image = document.getElementById('person_image');
-        person_image.addEventListener('change', function(e) {
-            var reader = new FileReader();
-            reader.onload = function(event) {
-                document.getElementById('preview_image').src = event.target.result;
+        document.addEventListener('DOMContentLoaded', function() {
+            function showToast(title, message, type) {
+                var toast = document.getElementById('liveToast');
+                var toastBody = toast.querySelector('.toast-body');
+                var toastHeader = toast.querySelector('.toast-header');
+                var toastHeaderStrong = toastHeader.querySelector('strong');
+
+                toastBody.textContent = message;
+                toastHeaderStrong.textContent = title;
+
+                // Reset the toast header class
+                toastHeader.className = 'toast-header';
+
+                if (type === 'success') {
+                    toastHeader.classList.add('text-bg-danger');
+                } else if (type === 'error') {
+                    toastHeader.classList.add('text-bg-warning');
+                }
+
+                var toastElement = new bootstrap.Toast(toast);
+                toastElement.show();
             }
-            reader.readAsDataURL(e.target.files[0]);
+
+            @if (session('success'))
+                showToast('Success', '{{ session('success') }}', 'success');
+            @endif
+            @if (session('error'))
+                showToast('Error', '{{ session('error') }}', 'error');
+            @endif
         });
     </script>
 
