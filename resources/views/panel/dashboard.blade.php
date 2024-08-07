@@ -1,5 +1,5 @@
 @extends('panel.layouts.app')
-@section('title', 'Metropolitian Dashboard')
+@section('title', 'षडानन्द यातायात राजस्व विभाग')
 @section('subtitle', 'Sadananda VDC tax toll.')
 @section('content')
 <div class="row">
@@ -9,8 +9,8 @@
                 <div class="row align-items-center">
                     <div class="col-xl-8 col-xxl-12">
                         <div class="text-center text-xl-start text-xxl-center mb-4 mb-xl-0 mb-xxl-4">
-                            <h1 class="text-primary">Sadananda Toll Management Admin Panel</h1>
-                            <p class="text-gray-700 mb-0">जननी जन्मभूमिश्च स्वर्गादपी गरीयसी</p>
+                            <h1 class="text-primary">Admin Panel</h1>
+                            <p class="text-gray-700 mb-0">" जननी जन्मभूमिश्च स्वर्गादपी गरीयसी "</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid" style="width: 13rem; height:13rem;" src="{{ asset('assets/img/favicon.png') }}" style="max-width: 26rem" /></div>

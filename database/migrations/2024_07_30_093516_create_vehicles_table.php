@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('vehicle_type_id');
-            $table->string('vehicle_no');
+            $table->string('vehicle_reg_no');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -8,10 +8,10 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
        @include('panel.layouts.styles')
-       <title>Sadananda Nagarpalika</title>
+       <title>षडानन्द राजस्व विभाग</title>
 
-       <script data-search-pseudo-elements="" defer="" src="../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
-        <script src="../cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
+       <script data-search-pseudo-elements="" defer="" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="nav-fixed">
         @include('panel.layouts.header')
@@ -27,12 +27,11 @@
                                 <div class="row align-items-center justify-content-between">
                                     <div class="col-auto mt-4">
                                         <h1 class="page-header-title">
-                                            <div class="page-header-icon"><i data-feather="activity"></i></div>
                                             @yield('title')
                                         </h1>
                                         <div class="page-header-subtitle">@yield('subtitle')</div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>

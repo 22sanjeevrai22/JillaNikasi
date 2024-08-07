@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Vehicle;
 use App\Http\Requests\StoreVehicleRequest;
 use App\Http\Requests\UpdateVehicleRequest;
+use App\Models\VehicleType;
 
 class VehicleController extends Controller
 {
@@ -22,7 +23,11 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        return view('panel.vehicles.create');
+        $vehicles = Vehicle::all();
+        $vehicleTypes = VehicleType::all();
+        // dd($vehicle->vehicleType->name);
+
+        return view('panel.vehicles.create', compact('vehicles', 'vehicleTypes'));
     }
 
     /**

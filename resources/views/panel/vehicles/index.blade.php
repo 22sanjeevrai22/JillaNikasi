@@ -1,6 +1,6 @@
 @extends('panel.layouts.app')
-@section('title', 'Vehicle List')
-@section('subtitle', 'List of Vehicles')
+@section('title', 'यातायात सूची')
+@section('subtitle', 'यातायात साधन सूची')
 @section('content')
 
     <!-- Main page content-->
@@ -20,6 +20,7 @@
                                 <th scope="col">S No.</th>
                                 <th scope="col">Type Name</th>
                                 <th scope="col">Vehicle No</th>
+                                <th scope="col">Owner Name</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -27,13 +28,14 @@
                             @foreach ($vehicles as $vehicle)
                                 <tr>
                                     <th scope="row">{{ $vehicle->id }}</th>
-                                    <td>{{ $vehicle->name }}</td>
+                                    <td>{{ $vehicle->vehicleType->name }}</td>
                                     <td>{{ $vehicle->vehicle_no }}</td>
-                                    <td><a href="{{ route('vehicle-types.edit', $vehicleType->id) }}"><button type="button"
+                                    <td>Falana Dhikana</td>
+                                    <td><a href="{{ route('vehicles.edit', $vehicle->id) }}"><button type="button"
                                                 class="btn btn-primary">Edit</button></a>
-                                        <form action="{{ route('vehicle-types.destroy', $vehicleType->id) }}" method="POST"
+                                        <form action="{{ route('vehicles.destroy', $vehicle->id) }}" method="POST"
                                             style="display:inline;"
-                                            onsubmit="return confirm('Are you sure you want to delete this vehicleType?');">
+                                            onsubmit="return confirm('Are you sure you want to delete this Vehicle Type?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -47,7 +49,7 @@
         </div>
     </div>
 
-
+@include('panel.layouts.toast')
 
 
 @endsection

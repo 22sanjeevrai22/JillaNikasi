@@ -13,6 +13,6 @@ class Vehicle extends Model
     protected $guarded = [];
 
     public function vehicleType(){
-        return $this->hasMany(VehicleType::class, 'vehicle_type_id');
+        return $this->belongsTo(VehicleType::class, 'vehicle_type_id');
     }
 }

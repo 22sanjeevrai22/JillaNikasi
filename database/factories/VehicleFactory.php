@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\VehicleType;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,8 @@ class VehicleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'vehicle_type_id' => VehicleType::inRandomOrder()->first()->id,
+            'vehicle_reg_no'=> Str::random(3),
         ];
     }
 }
