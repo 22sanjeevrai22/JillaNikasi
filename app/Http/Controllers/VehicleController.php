@@ -38,6 +38,11 @@ class VehicleController extends Controller
         //
     }
 
+    public function storeVehicle(array $data)
+    {
+        // dd($data);
+    }
+
     /**
      * Display the specified resource.
      */

@@ -70,9 +70,9 @@ class UnitController extends Controller
         $unit = Unit::find($unit->id);
         if ($unit) {
             $unit->delete();
-            return redirect()->back()->with('deleteSuccess', 'Unit Deleted Successfully');
+            return back()->with('deleted', 'Unit Deleted Successfully');
         } else {
-            return redirect()->back()->with('error', 'Unit Not Found');
+            return back()->with('error', 'Unit Not Found');
         }
     }
 }

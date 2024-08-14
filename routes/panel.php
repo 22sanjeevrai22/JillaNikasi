@@ -22,6 +22,7 @@ Route::prefix('admin')->group(function () {
     });
     Route::get('dashboard', [DashboardController::class, 'index'] )->name('admin.dashboard');
     Route::get('record', [TollRecordController::class, 'index'])->name('record.index');
+    Route::post('record/store', [TollRecordController::class, 'store'])->name('record.submit');
 
     Route::get('persons', [PersonController::class, 'index'])->name('persons.index');
     Route::get('persons/create', [PersonController::class, 'create'])->name('persons.create');

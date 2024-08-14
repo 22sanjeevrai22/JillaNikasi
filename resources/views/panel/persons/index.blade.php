@@ -28,9 +28,9 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($persons as $person)
+                            @foreach ($persons as $index=>$person)
                                 <tr>
-                                    <th scope="row">{{ $person->id }}</th>
+                                    <th scope="row">{{ $index+1 }}</th>
                                     <td>
 
                                         @if ($person->getFirstMedia('cover'))

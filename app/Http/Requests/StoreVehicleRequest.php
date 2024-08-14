@@ -24,7 +24,7 @@ class StoreVehicleRequest extends FormRequest
         return [
             'vehicle_type_no' => 'required|number',
             'vehicle_no' => 'required|number',
-            ''
+
         ];
     }
 }

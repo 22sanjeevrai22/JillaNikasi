@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\GoodController;
-use App\Http\Controllers\PersonController;
-use App\Http\Controllers\VehicleController;
 use App\Models\Good;
 use App\Models\Unit;
 use App\Models\Vehicle;
 use App\Models\VehicleType;
-
 use App\Models\TollRecord;
 use App\Http\Requests\StoreTollRecordRequest;
 use App\Http\Requests\UpdateTollRecordRequest;
+use App\Models\Person;
+use Illuminate\Http\Request;
+
 
 class TollRecordController extends Controller
 {
@@ -29,6 +28,39 @@ class TollRecordController extends Controller
         return view('panel.record.index', compact('vehicleTypes', 'goods', 'units'));
     }
 
+    public function store(StoreTollRecordRequest $request)
+    {
+        // Prepare data for PersonController
+        $personData = [
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+            'address' => $request->address,
+            'contact_number' => $request->contact_number,
+            'email' => $request->email,
+        ];
+        
+        Person::create($personData);
+
+        $vehicleData = [
+            'vehicle_reg_no' => $request->vehicle_reg_no,
+            'vehicle_type_id' => $request->vehicle_type_id,
+
+        ];
+        Vehicle::create($vehicleData);
+
+
+        $goodData = [
+            'name' => $request->good_name,
+            'quantity' => $request->good_quantity,
+            'price_per_unit' => $request->price,
+        ];
+        Good::create($goodData);
+
+
+        return back()->with('success', 'Form submitted successfully!');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -40,10 +72,10 @@ class TollRecordController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTollRecordRequest $request)
-    {
+    // public function store(StoreTollRecordRequest $request)
+    // {
 
-    }
+    // }
 
     /**
      * Display the specified resource.
@@ -74,6 +106,12 @@ class TollRecordController extends Controller
      */
     public function destroy(TollRecord $tollRecord)
     {
-        //
+        $tollRecord = TollRecord::find($tollRecord->id);
+        if ($tollRecord) {
+            $tollRecord->delete();
+            return back()->with('deleted', 'Record Deleted Successfully');
+        } else {
+            return back()->with('error', 'Record Not Found');
+        }
     }
 }

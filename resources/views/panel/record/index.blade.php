@@ -4,7 +4,7 @@
 @section('content')
 
 
-    <form action="{{ route('record.index') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('record.submit') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-xl-10">
@@ -135,13 +135,13 @@
                         </div>
                         <hr>
                         <div class="row gx-3 mb-3">
-                            <div class="col-md-5">
-                                <label class="small mb-1" for="name">Goods Name<span
+                            <div class="col-md-3">
+                                <label class="small mb-1" for="good_name">Goods Name<span
                                         class="text-danger">*</span></label>
                                 <select
                                     class="form-select @error('good_name') is-invalid
                                 @enderror"
-                                    name="good_name" id="name" aria-label="Default select example" required>
+                                    name="good_name" id="good_name" aria-label="Default select example" required>
                                     <option value="" selected disabled>Select Goods Name</option>
                                     @foreach ($goods as $good)
                                         <option value="{{ $good->id }}">{{ $good->name }}
@@ -153,27 +153,45 @@
                                 @enderror
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label class="small mb-1" for="good_quantity">Quantity<span
                                         class="text-danger">*</span></label>
                                 <input
                                     class="form-control @error('good_quantity') is-invalid
                                 @enderror"
-                                    name="good_quantity" id="good_quantity" type="text" placeholder="Enter Goods Quantity"
-                                    value="{{ old('good_quantity') }}" required />
+                                    name="good_quantity" id="good_quantity" type="text"
+                                    placeholder="Enter Goods Quantity" value="{{ old('good_quantity') }}" required />
                                 @error('good_quantity')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
+
                             <div class="col-md-3">
-                                <label class="small mb-1" for="unit">Unit<span
+                                <label class="small mb-1" for="unit">Unit<span class="text-danger">*</span></label>
+                                <select
+                                    class="form-select @error('unit') is-invalid
+                                @enderror"
+                                    name="unit" id="unit" aria-label="Default select example" required>
+                                    <option value="" selected disabled>Select Unit</option>
+                                    @foreach ($units as $unit)
+                                        <option value="{{ $unit->id }}">{{ $unit->type }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('unit')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="small mb-1" for="price">Price per Unit<span
                                         class="text-danger">*</span></label>
                                 <input
-                                    class="form-control @error('unit') is-invalid
+                                    class="form-control @error('price') is-invalid
                                 @enderror"
-                                    name="unit" id="unit" type="text" placeholder="Enter Goods Quantity"
-                                    value="{{ old('unit') }}" required />
-                                @error('unit')
+                                    name="price" id="price" type="text" placeholder="Enter Goods Quantity"
+                                    value="{{ old('price') }}" required />
+                                @error('price')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -247,6 +265,7 @@
 @section('page-scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
             var person_image = document.getElementById('person_image');
             person_image.addEventListener('change', function(e) {
                 var reader = new FileReader();
@@ -272,6 +291,8 @@
                     toastHeader.classList.add('text-bg-success');
                 } else if (type === 'error') {
                     toastHeader.classList.add('text-bg-warning');
+                } else if (type === 'deleted') {
+                    toastHeader.classList.add('text-bg-danger');
                 }
 
                 var toastElement = new bootstrap.Toast(toast);
@@ -283,6 +304,9 @@
             @endif
             @if (session('error'))
                 showToast('Error', '{{ session('error') }}', 'error');
+            @endif
+            @if (session('deleted'))
+                showToast('Deleted', '{{ session('deleted') }}', 'deleted');
             @endif
         });
     </script>
