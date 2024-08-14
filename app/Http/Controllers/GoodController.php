@@ -13,7 +13,8 @@ class GoodController extends Controller
      */
     public function index()
     {
-        //
+        $goods = Good::all();
+        return view('panel.goods.index', compact('goods'));
     }
 
     /**
@@ -61,6 +62,12 @@ class GoodController extends Controller
      */
     public function destroy(Good $good)
     {
-        //
+        $good = Good::find($good->id);
+        if ($good) {
+            $good->delete();
+            return redirect()->back()->with('success', 'Good Deleted Successfully');
+        } else {
+            return redirect()->back()->with('error', 'Good Not Found');
+        }
     }
 }

@@ -8,7 +8,10 @@
                 <div class="nav-link-icon"><i data-feather="activity"></i></div>
                 Dashboard
             </a>
-
+            <a class="nav-link collapsed" href="{{ route('record.index') }}" aria-expanded="false" aria-controls="collapseDashboards">
+                <div class="nav-link-icon"><i data-feather="activity"></i></div>
+                Records
+            </a>
             <div class="sidenav-menu-heading">Custom</div>
             <a class="nav-link collapsed" href="{{ route('persons.index') }}"  aria-expanded="false" aria-controls="collapsePages">
                 <div class="nav-link-icon"><i data-feather="grid"></i></div>
@@ -34,7 +37,7 @@
                 <div class="nav-link-icon"><i data-feather="layout"></i></div>
                 Units
             </a>
-           
+
 
             <!-- Sidenav Heading (Addons)-->
             <div class="sidenav-menu-heading">Plugins</div>

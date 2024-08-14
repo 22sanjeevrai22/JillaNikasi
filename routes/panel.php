@@ -7,6 +7,8 @@ use App\Http\Controllers\VehicleTypeController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\GoodController;
+use App\Http\Controllers\TollRecordController;
+use App\Http\Middleware\RouteInputsMiddleware;
 
 Route::get('dashboard', function () {
     return redirect()->route('admin.dashboard');
@@ -19,6 +21,7 @@ Route::prefix('admin')->group(function () {
         return redirect()->route('admin.dashboard');
     });
     Route::get('dashboard', [DashboardController::class, 'index'] )->name('admin.dashboard');
+    Route::get('record', [TollRecordController::class, 'index'])->name('record.index');
 
     Route::get('persons', [PersonController::class, 'index'])->name('persons.index');
     Route::get('persons/create', [PersonController::class, 'create'])->name('persons.create');
@@ -52,4 +55,6 @@ Route::prefix('admin')->group(function () {
     Route::get('goods/{good}/edit', [GoodController::class, 'edit'])->name('goods.edit');
     Route::put('goods/{good}/update', [GoodController::class, 'update'])->name('goods.update');
     Route::delete('goods/{good}', [GoodController::class, 'destroy'])->name('goods.destroy');
+
+
 });

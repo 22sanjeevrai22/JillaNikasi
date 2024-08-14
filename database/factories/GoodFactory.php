@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +17,10 @@ class GoodFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->word,
+            'quantity' => $this->faker->randomNumber(1),
+            'price_per_unit' => $this->faker->randomNumber(3),
+
         ];
     }
 }

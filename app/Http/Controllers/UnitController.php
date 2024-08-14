@@ -13,7 +13,8 @@ class UnitController extends Controller
      */
     public function index()
     {
-        //
+        $units = Unit::all();
+        return view('panel.units.index', compact('units'));
     }
 
     /**
@@ -21,7 +22,6 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -29,7 +29,13 @@ class UnitController extends Controller
      */
     public function store(StoreUnitRequest $request)
     {
-        //
+        $data = [
+            'type' => $request->unit_type,
+
+        ];
+
+        $person = Unit::create($data);
+       return back()->with('success', 'Unit Created Successfully');
     }
 
     /**
@@ -61,6 +67,12 @@ class UnitController extends Controller
      */
     public function destroy(Unit $unit)
     {
-        //
+        $unit = Unit::find($unit->id);
+        if ($unit) {
+            $unit->delete();
+            return redirect()->back()->with('deleteSuccess', 'Unit Deleted Successfully');
+        } else {
+            return redirect()->back()->with('error', 'Unit Not Found');
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Good;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class GoodSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Good::factory(10)->create();
     }
 }

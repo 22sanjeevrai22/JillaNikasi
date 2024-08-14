@@ -32,6 +32,8 @@ class PersonController extends Controller
      */
     public function store(StorePersonRequest $request)
     {
+        dd($request);
+
         $data = [
             'first_name' => $request->first_name,
             'middle_name' => $request->middle_name,
@@ -40,9 +42,8 @@ class PersonController extends Controller
             'contact_number' => $request->contact_number,
             'email' => $request->email,
         ];
-
-        $person = Person::create($data);
         if ($request->hasFile('person_image')) {
+            $person = Person::create($data);
             try {
                 // $image = $request->file('person_image');
                 // $imagePath = $image->store('temp', 'public');
