@@ -39,7 +39,7 @@ class TollRecordController extends Controller
             'contact_number' => $request->contact_number,
             'email' => $request->email,
         ];
-        
+
         Person::create($personData);
 
         $vehicleData = [
@@ -56,7 +56,6 @@ class TollRecordController extends Controller
             'price_per_unit' => $request->price,
         ];
         Good::create($goodData);
-
 
         return back()->with('success', 'Form submitted successfully!');
     }

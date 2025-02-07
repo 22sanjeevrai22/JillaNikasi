@@ -13,8 +13,14 @@ class VehicleTypeSeeder extends Seeder
      */
     public function run(): void
     {
+        $names = ['Truck', 'Bus', 'Car', '3 Wheelers', 'Truck'];
 
-            VehicleType::factory(10)->create();
-
+        foreach ($names as $name) {
+            VehicleType::factory()->create([
+                'name' => $name,
+                'description' => fake()->paragraph,
+                'price_per_vehicle' => fake()->numberBetween(100, 500),
+            ]);
+        }
     }
 }
