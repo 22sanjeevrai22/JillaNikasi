@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('people', function (Blueprint $table) {
+        Schema::create('vehicle_types', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('middle_name')->nullable();
-            $table->string('last_name');
-            $table->string('email')->nullable()->unique();
-            $table->string('address');
-            $table->string('contact_number');
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->decimal('price_per_vehicle', 8, 2 );
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('people', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
+        Schema::dropIfExists('vehicle_types');
     }
 };

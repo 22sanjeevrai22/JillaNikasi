@@ -17,7 +17,12 @@ class PersonFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'first_name'=>fake()->firstName($gender = 'male'|'female'),
+            'middle_name'=>fake()->lastName,
+            'last_name'=>fake()->lastName,
+            'email'=>fake()->email,
+            'address'=>fake()->address,
+            'contact'=>fake()->phoneNumber,
         ];
     }
 }

@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('province');
-            $table->string('zip');
+            $table->string('zip_code');
+            $table->text('description')->nullable();
             $table->string('email')->unique();
             $table->softDeletes();
             $table->timestamps();

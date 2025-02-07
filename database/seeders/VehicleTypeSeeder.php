@@ -13,12 +13,8 @@ class VehicleTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        $names = ['Two Wheelers', 'Three Wheelers', 'Four Wheelers', 'Six Wheelers'];
 
-        foreach($names as $name){
-            VehicleType::factory()->create([
-                'name' => $name,
-            ]);
-        }
+            VehicleType::factory(10)->create();
+
     }
 }

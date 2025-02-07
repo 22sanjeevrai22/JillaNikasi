@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('person_id');
             $table->foreignId('vehicle_type_id');
-            $table->string('vehicle_reg_no');
+            $table->string('vehicle_license_plate')->unique();
+            $table->string('vehicle_reg_no')->unique();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -18,8 +18,8 @@ class GoodFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'quantity' => $this->faker->randomNumber(1),
-            'price_per_unit' => $this->faker->randomNumber(3),
+            'description'=>$this->faker->paragraph,
+            // 'price_per_unit' => $this->faker->randomNumber(3),
 
         ];
     }
