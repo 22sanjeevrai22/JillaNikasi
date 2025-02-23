@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('person_id');
             $table->foreignId('vehicle_type_id');
             $table->string('vehicle_license_plate')->unique();
-            $table->string('vehicle_reg_no')->unique();
+            $table->string('vehicle_regd_no')->unique();
             $table->softDeletes();
             $table->timestamps();
         });

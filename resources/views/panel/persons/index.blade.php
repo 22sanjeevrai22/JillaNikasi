@@ -48,7 +48,7 @@
                                         {{ $person->last_name }}
                                     </td>
                                     <td>{{ $person->address }}</td>
-                                    <td>{{ $person->contact_number }}</td>
+                                    <td>{{ $person->contact }}</td>
                                     <td>{{ $person->email }}</td>
                                     <td><a href="{{ route('persons.edit', $person->id) }}"><button type="button"
                                                 class="btn btn-primary">Edit</button></a>

@@ -21,9 +21,9 @@ class VehicleFactory extends Factory
     public function definition(): array
     {
         return [
-            'person_id'=>Person::inRandomOrder()->first()->id,
             'vehicle_type_id' => VehicleType::inRandomOrder()->first()->id,
-            'vehicle_reg_no'=> Str::random(6),
+            'vehicle_regd_no'=> Str::random(6),
+            'person_id'=>Person::inRandomOrder()->first()->id,
             'vehicle_license_plate'=> Str::random(4),
         ];
     }

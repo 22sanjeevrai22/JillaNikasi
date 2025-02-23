@@ -19,7 +19,7 @@
                             <tr>
                                 <th scope="col">S No.</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Quantity</th>
+                                <th scope="col">Description</th>
                                 <th scope="col">Price Per Unit</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -29,7 +29,7 @@
                                 <tr>
                                     <th scope="row">{{ $good->id }}</th>
                                     <td>{{ $good->name }}</td>
-                                    <td>{{ $good->quantity }}</td>
+                                    <td width="45%">{{ $good->description }}</td>
                                     <td>{{ $good->price_per_unit }}</td>
                                     <td><a href="{{ route('goods.edit', $good->id) }}"><button type="button"
                                                 class="btn btn-primary">Edit</button></a>

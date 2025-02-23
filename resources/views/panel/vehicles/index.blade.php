@@ -19,7 +19,7 @@
                             <tr>
                                 <th scope="col">S No.</th>
                                 <th scope="col">Type Name</th>
-                                <th scope="col">Vehicle No</th>
+                                <th scope="col">Vehicle Regd. No</th>
                                 <th scope="col">Owner Name</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -29,8 +29,8 @@
                                 <tr>
                                     <th scope="row">{{ $vehicle->id }}</th>
                                     <td>{{ $vehicle->vehicleType->name }}</td>
-                                    <td>{{ $vehicle->vehicle_no }}</td>
-                                    <td>Falana Dhikana</td>
+                                    <td>{{ $vehicle->vehicle_regd_no }}</td>
+                                    <td>{{ $vehicle-> }}</td>
                                     <td><a href="{{ route('vehicles.edit', $vehicle->id) }}"><button type="button"
                                                 class="btn btn-primary">Edit</button></a>
                                         <form action="{{ route('vehicles.destroy', $vehicle->id) }}" method="POST"

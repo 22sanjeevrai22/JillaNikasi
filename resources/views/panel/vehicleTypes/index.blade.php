@@ -19,8 +19,8 @@
                             <tr>
                                 <th scope="col">S No.</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Code</th>
-                                <th scope="col">Cost/Unit Vehicle</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Price/Vehicle</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -29,7 +29,7 @@
                                 <tr>
                                     <th scope="row">{{ $vehicleType->id }}</th>
                                     <td>{{ $vehicleType->name }}</td>
-                                    <td>{{ $vehicleType->vehicle_code }}</td>
+                                    <td>{{ $vehicleType->description }}</td>
                                     <td>{{ $vehicleType->price_per_vehicle }}</td>
                                     <td><a href="{{ route('vehicle-types.edit', $vehicleType->id) }}"><button type="button"
                                                 class="btn btn-primary">Edit</button></a>
